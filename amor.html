@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>¿Quieres casarte conmigo?</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+            font-family: 'Segoe Script', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255,255,255,0.92);
+            border-radius: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.25);
+            padding: 50px 35px 40px 35px;
+            text-align: center;
+            max-width: 370px;
+            position: relative;
+        }
+        img {
+            width: 170px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ee9ca7;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 16px #ee9ca7a0;
+        }
+        h1 {
+            color: #d72660;
+            margin-bottom: 12px;
+            font-size: 2.3em;
+            letter-spacing: 1px;
+            text-shadow: 1px 2px 6px #ee9ca7a0;
+        }
+        p {
+            color: #444;
+            font-size: 1.18em;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .btns {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .btn {
+            background: linear-gradient(90deg, #cd1414 60%, #c12385 100%);
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 13px 38px;
+            font-size: 1.13em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #030001a0;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #ee9ca7 60%, #d72660 100%);
+            transform: scale(1.07);
+        }
+        .btn.no {
+            background: linear-gradient(90deg, #bdbdbd 60%, #ee9ca7 100%);
+            color: #d72660;
+        }
+        .btn.no:hover {
+            background: linear-gradient(90deg, #ee9ca7 60%, #bdbdbd 100%);
+            color: #fff;
+        }
+        .heart {
+            font-size: 2.3em;
+            color: #5e26ad;
+            animation: beat 1s infinite alternate;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 8px #ee9ca7a0;
+        }
+        @keyframes beat {
+            to { transform: scale(1.2); }
+        }
+        /* Popup estilos */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(238,156,167,0.25);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        .popup-content {
+            background: #fff;
+            border-radius: 25px;
+            padding: 35px 30px;
+            box-shadow: 0 8px 32px 0 rgba(31,38,135,0.25);
+            text-align: center;
+            max-width: 350px;
+            animation: aparecer 0.7s;
+        }
+        .popup-content h2 {
+            color: #d72660;
+            margin-bottom: 15px;
+            font-size: 1.7em;
+        }
+        .popup-content p {
+            color: #444;
+            font-size: 1.15em;
+            margin-bottom: 18px;
+        }
+        .close-btn {
+            background: #ee9ca7;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 28px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .close-btn:hover {
+            background: #d72660;
+        }
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.8);}
+            to { opacity: 1; transform: scale(1);}
+        }
+        .video-container {
+            margin: 18px 0 0 0;
+        }
+        .video-container video, .video-container iframe {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #ee9ca7a0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="12345.jpg" alt="Foto especial">
+        <h1>¿Quieres casarte conmigo?<br>
+            ERLINDA GARAVITO
+        </h1>
+        <div class="heart">❤️</div>
+        <p>
+            Quiero preguntarte algo importante… Desde hace un tiempo me he dado cuenta de lo especial que eres para mí. Me haces sonreír, me inspiras y cada momento contigo lo disfruto muchísimo. Por eso, quiero saber… <br>
+            ¿Quieres casarte conmigo?
+        </p>
+        <div class="btns">
+            <button class="btn" onclick="mostrarPopup(true)">Sí, quiero</button>
+            <button class="btn no" onclick="mostrarPopup(false)">No quiero</button>
+        </div>
+    </div>
+    <!-- Popup para respuesta -->
+    <div class="popup" id="popup">
+        <div class="popup-content" id="popup-content">
+            <!-- El contenido se llena con JS -->
+        </div>
+    </div>
+    <script>
+        function mostrarPopup(si) {
+            const popup = document.getElementById('popup');
+            const content = document.getElementById('popup-content');
+            if(si) {
+                content.innerHTML = `
+                    <h2>¡Gracias por decir que sí! 💍</h2>
+                    <p>
+                        Prometo hacerte feliz cada día, apoyarte en todo momento y cuidar de ti siempre.<br>
+                        ¡Hoy comienza nuestra historia más bonita!<br>
+                        Te amo muchísimo. 💕
+                    </p>
+                    <div class="video-container">
+                        <!-- Puedes cambiar el src por el video que quieras -->
+                        <video controls poster="12345.jpg">
+                            <source src="777.mp4" type="video/mp4">
+                            Tu navegador no soporta el video.
+                        </video>
+                    </div>
+                    <button class="close-btn" onclick="cerrarPopup()">Cerrar</button>
+                `;
+            } else {
+                content.innerHTML = `
+                    <h2>¡Oh, qué triste! 💔</h2>
+                    <p>
+                        Aun así, siempre te querré y te cuidaré.<br>
+                        Gracias por ser tan especial para mí.
+                    </p>
+                    <div class="video-container">
+                        <!-- Puedes cambiar el src por el video que quieras -->
+                        <iframe src="01.mp4" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <button class="close-btn" onclick="cerrarPopup()">Cerrar</button>
+                `;
+            }
+            popup.style.display = "flex";
+        }
+        function cerrarPopup() {
+            document.getElementById('popup').style.display = "none";
+        }
+    </script>
+</body>
+</html>
